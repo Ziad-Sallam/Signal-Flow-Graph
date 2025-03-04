@@ -7,7 +7,7 @@ public class GraphCycles {
     private int[][] adjacencyMatrix;
     private ArrayList<Integer> gains;
     private int numVertices;
-    private List<List<Integer>> cycles;
+    public List<List<Integer>> cycles;
 
     public GraphCycles(int[][] adjacencyMatrix) {
         this.adjacencyMatrix = adjacencyMatrix;
@@ -77,14 +77,17 @@ public class GraphCycles {
     public static void main(String[] args) {
         // Example adjacency matrix
         int[][] adjacencyMatrix = {
-                {0,2,0,0,2},
-                {0,0,1,0,0},
-                {0,1,0,1,0},
-                {1,0,1,0,0},
-                {0,0,0,1,1}
+                {0,1,0,0,0,0,0},
+                {0,0,5,0,0,0,10},
+                {0,0,0,10,0,0,0},
+                {0,0,-1,0,2,0,0},
+                {0,-1,0,-2,0,1,0},
+                {0,0,0,0,0,0,0},
+                {0,0,0,0,2,0,-1}
         };
 
         GraphCycles graph = new GraphCycles(adjacencyMatrix);
+
         graph.findCycles();
         graph.calculateCycle();
         for (int gain : graph.gains) {
