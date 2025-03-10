@@ -3,6 +3,8 @@ package com.example.project;
 import java.util.ArrayList;
 import java.util.List;
 
+import static com.example.project.NonTouchingLoops.findNonTouchingLoops;
+
 public class Graph {
 
     private int[][] graph;
@@ -120,16 +122,17 @@ public class Graph {
     public static void main(String[] args) {
         // Example adjacency matrix
         int[][] adjacencyMatrix = {
-                {0, 1, 0, 0, 0, 0, 0},
-                {0, 0, 5, 0, 0, 0, 10},
-                {0, 0, 0, 10, 0, 0, 0},
-                {0, 0, -1, 0, 2, 0, 0},
-                {0, -1, 0, -2, 0, 1, 0},
-                {0, 0, 0, 0, 0, 0, 0},
-                {0, 0, 0, 0, 2, 0, -1}
+                {0, 1, 0, 0, 0, 0, 0,0},
+                {0, 0, 1, 0, 0, 0, 0,0},
+                {0, 0, 0, 1, 0, 0, 0,0},
+                {0, 0, 0, 0, 1, 0, 1,0},
+                {0, 0, 0, 0, 0, 1, 0,0},
+                {0, 0, 0, 0, 1, 0, 1,1},
+                {0, 0, 1, 0, 0, 0, 0,1},
+                {0,1,0,0,0,1,0,0}
         };
 
-        Graph graph=new Graph(adjacencyMatrix,0,5);
+        Graph graph=new Graph(adjacencyMatrix,0,7);
         graph.findCycles();
         graph.findPaths();
         graph.calculatePathsgain();
@@ -147,13 +150,28 @@ public class Graph {
         for(List<Integer> cycle: closedcloops ){
             System.out.println(cycle);
         }
+//        for(int i=0 ; i<closedcloops.size() ; i++){
+//            closedcloops.get(i).remove(closedcloops.get(i).size() - 1);
+//        }
+//
+//        System.out.println("Closed loops");
+//        for(List<Integer> cycle: closedcloops ){
+//            System.out.println(cycle);
+//        }
 
-        System.out.println("cycles gain :"+graph.cyclesgains);
-        List<List<Integer>> nontouching1=graph.nontouchinwithPath(graph.cycles, graph.paths.get(0));
-        List<List<Integer>> nontouching2=graph.nontouchinwithPath(graph.cycles, graph.paths.get(1));
+        List<List<Integer>> nontloops = findNonTouchingLoops(closedcloops);
+        System.out.println("NON TOUCHING LOOOOOOOPS");
+        for(List<Integer> cycle: nontloops ){
 
-        System.out.println( "withfirstpath"+nontouching1);
-        System.out.println( "withsecondpath"+nontouching2);
+            System.out.println(cycle);
+        }
+
+        //System.out.println("cycles gain :"+graph.cyclesgains);
+        //List<List<Integer>> nontouching1=graph.nontouchinwithPath(graph.cycles, graph.paths.get(0));
+        // List<List<Integer>> nontouching2=graph.nontouchinwithPath(graph.cycles, graph.paths.get(1));
+        //
+        // System.out.println( "withfirstpath"+nontouching1);
+        // System.out.println( "withsecondpath"+nontouching2);
 
 
     }
