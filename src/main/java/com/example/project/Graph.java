@@ -3,8 +3,6 @@ package com.example.project;
 import java.util.ArrayList;
 import java.util.List;
 
-import static com.example.project.NonTouchingLoops.findNonTouchingLoops;
-
 public class Graph {
 
     private int[][] graph;
@@ -27,21 +25,38 @@ public class Graph {
         this.pathsgains = new ArrayList<>();
     }
 
+    public List<List<Integer>> getCycles() {
+        return cycles;
+    }
+
+    public List<List<Integer>> getPaths() {
+        return paths;
+    }
+    public List<Integer> getPathsgains() {
+        return pathsgains;
+    }
+
+    public List<Integer> getCyclesgains() {
+        return cyclesgains;
+    }
+
+
     public void findPaths() {
+        paths.clear();
         boolean[] visited = new boolean[numVertices];
         List<Integer> path = new ArrayList<>();
 
         dfs(start, start, visited, path, false);
-        visited[start] = true; // Mark the starting node as visited to avoid redundant cycles
-
+        visited[start] = true;
     }
 
     public void findCycles() {
+        cycles.clear();
         boolean[] visited = new boolean[numVertices];
         List<Integer> path = new ArrayList<>();
         for (int i = 0; i < numVertices; i++) {
             dfs(i, i, visited, path, true);
-            visited[i] = true; // Mark the starting node as visited to avoid redundant cycles
+            visited[i] = true;
         }
     }
 
@@ -51,53 +66,45 @@ public class Graph {
 
         for (int neighbor = 0; neighbor < numVertices; neighbor++) {
             if (graph[current][neighbor] != 0) {
-                if (neighbor == this.end && !findcycle) {  //search for path
-
+                if (neighbor == this.end && !findcycle) {
                     List<Integer> currentpath = new ArrayList<>(path);
                     currentpath.add(neighbor);
                     paths.add(currentpath);
-
-                } else if (neighbor == start && findcycle) {  //serch for cycles
-
+                } else if (neighbor == start && findcycle) {
                     List<Integer> currentcycle = new ArrayList<>(path);
                     currentcycle.add(neighbor);
                     cycles.add(currentcycle);
-
                 } else if (!visited[neighbor]) {
                     dfs(start, neighbor, visited, path, findcycle);
                 }
             }
-
         }
 
-        path.removeLast();
+        path.remove(path.size() - 1);
         visited[current] = false;
     }
 
-    void calculateCyclesgain() {
+    public void calculateCyclesgain() {
+        cyclesgains.clear();
         for (List<Integer> loop : cycles) {
             int gain = 1;
             for (int i = 0; i < loop.size() - 1; i++) {
                 gain *= graph[loop.get(i)][loop.get(i + 1)];
             }
-//            gain *= graph[loop.getLast()][loop.getFirst()];
             cyclesgains.add(gain);
-
         }
-
     }
 
-    void calculatePathsgain() {
+    public void calculatePathsgain() {
+        pathsgains.clear();
         for (List<Integer> loop : paths) {
             int gain = 1;
             for (int i = 0; i < loop.size() - 2; i++) {
                 gain *= graph[loop.get(i)][loop.get(i + 1)];
             }
             pathsgains.add(gain);
-
         }
     }
-
 
     public List<List<Integer>> nontouchinwithPath(List<List<Integer>> loops, List<Integer> ForwardPath) {
         List<List<Integer>> nontouching = new ArrayList<>();
@@ -115,64 +122,5 @@ public class Graph {
             nontouching.add(i);
         }
         return nontouching;
-    }
-
-
-
-    public static void main(String[] args) {
-        // Example adjacency matrix
-        int[][] adjacencyMatrix = {
-                {0, 1, 0, 0, 0, 0, 0,0},
-                {0, 0, 1, 0, 0, 0, 0,0},
-                {0, 0, 0, 1, 0, 0, 0,0},
-                {0, 0, 0, 0, 1, 0, 1,0},
-                {0, 0, 0, 0, 0, 1, 0,0},
-                {0, 0, 0, 0, 1, 0, 1,1},
-                {0, 0, 1, 0, 0, 0, 0,1},
-                {0,1,0,0,0,1,0,0}
-        };
-
-        Graph graph=new Graph(adjacencyMatrix,0,7);
-        graph.findCycles();
-        graph.findPaths();
-        graph.calculatePathsgain();
-        graph.calculateCyclesgain();
-        List<List<Integer>> forwardpaths=graph.paths;
-        List<List<Integer>> closedcloops=graph.cycles;
-
-        System.out.println("Forward paths");
-        for(List<Integer> path: forwardpaths ){
-            System.out.println(path);
-
-        }
-        System.out.println("paths gain :"+graph.pathsgains);
-        System.out.println("Closed loops");
-        for(List<Integer> cycle: closedcloops ){
-            System.out.println(cycle);
-        }
-//        for(int i=0 ; i<closedcloops.size() ; i++){
-//            closedcloops.get(i).remove(closedcloops.get(i).size() - 1);
-//        }
-//
-//        System.out.println("Closed loops");
-//        for(List<Integer> cycle: closedcloops ){
-//            System.out.println(cycle);
-//        }
-
-        List<List<Integer>> nontloops = findNonTouchingLoops(closedcloops);
-        System.out.println("NON TOUCHING LOOOOOOOPS");
-        for(List<Integer> cycle: nontloops ){
-
-            System.out.println(cycle);
-        }
-
-        //System.out.println("cycles gain :"+graph.cyclesgains);
-        //List<List<Integer>> nontouching1=graph.nontouchinwithPath(graph.cycles, graph.paths.get(0));
-        // List<List<Integer>> nontouching2=graph.nontouchinwithPath(graph.cycles, graph.paths.get(1));
-        //
-        // System.out.println( "withfirstpath"+nontouching1);
-        // System.out.println( "withsecondpath"+nontouching2);
-
-
     }
 }

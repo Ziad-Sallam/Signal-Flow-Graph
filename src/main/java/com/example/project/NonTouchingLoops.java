@@ -3,8 +3,7 @@ package com.example.project;
 import java.util.*;
 
 public class NonTouchingLoops {
-
-    public static List<List<Integer>> findNonTouchingLoops(List<List<Integer>> loops) {
+    public List<List<Integer>> findNonTouchingLoops(List<List<Integer>> loops) {
         int n = loops.size();
         boolean[][] graph = new boolean[n][n];
 
@@ -19,7 +18,12 @@ public class NonTouchingLoops {
 
         List<List<Integer>> result = new ArrayList<>();
         List<Integer> current = new ArrayList<>();
-        findMaxIndependentSets(graph, 0, current, result, n);
+
+        // Find all combinations of non-touching loops
+        for (int k = 2; k <= n; k++) {  // Start from combinations of 2 loops
+            findIndependentSets(graph, 0, current, result, n, k);
+        }
+
         return result;
     }
 
@@ -31,12 +35,16 @@ public class NonTouchingLoops {
         return false;
     }
 
-    private static void findMaxIndependentSets(boolean[][] graph, int index, List<Integer> current,
-                                               List<List<Integer>> result, int n) {
-        if (index == n) {
-            if (current.size() > 1) { // Skip individual loops
-                result.add(new ArrayList<>(current));
-            }
+    private static void findIndependentSets(boolean[][] graph, int index, List<Integer> current,
+                                            List<List<Integer>> result, int n, int targetSize) {
+        // If we've found a combination of the target size
+        if (current.size() == targetSize) {
+            result.add(new ArrayList<>(current));
+            return;
+        }
+
+        // If we can't reach the target size
+        if (index == n || current.size() + (n - index) < targetSize) {
             return;
         }
 
@@ -52,12 +60,11 @@ public class NonTouchingLoops {
         // Include this loop if it is independent
         if (canSelect) {
             current.add(index);
-            findMaxIndependentSets(graph, index + 1, current, result, n);
+            findIndependentSets(graph, index + 1, current, result, n, targetSize);
             current.remove(current.size() - 1);
         }
 
         // Skip this loop
-        findMaxIndependentSets(graph, index + 1, current, result, n);
+        findIndependentSets(graph, index + 1, current, result, n, targetSize);
     }
-
 }
