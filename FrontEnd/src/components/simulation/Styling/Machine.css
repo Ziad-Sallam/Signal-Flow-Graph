@@ -1,0 +1,30 @@
+.machineNode{
+    border: 2px solid  black;
+    border-radius: 100%;
+    padding: 10px;
+    background-color: rgba(33, 33, 33, 0.8);
+    backdrop-filter: blur(20px);
+    color: #fff;
+    width: 100px;
+    height: 90px;
+    
+}
+
+.machineNode p{
+    text-align: center;
+}
+
+@keyframes colorPulse {
+    0% {
+      transform: scale(1); /* Normal size */
+      filter: brightness(100%); /* Normal brightness */
+    }
+    50% {
+      transform: scale(1.05); /* Slightly larger */
+      filter: brightness(120%); /* Brighter */
+    }
+    100% {
+      transform: scale(1); /* Back to normal size */
+      filter: brightness(100%); /* Back to normal brightness */
+    }
+  }
