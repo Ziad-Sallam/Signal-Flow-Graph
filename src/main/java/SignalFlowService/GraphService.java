@@ -154,11 +154,8 @@ public class GraphService {
             System.out.println("Path Gains: " + pathGains);
             System.out.println("Delta: " + delta);
             for (int i = 0; i < forwardPaths.size(); i++) {
-              System.out.println("Delta of Path "+graphService.deltaOfPath(forwardPaths.get(i), nonTouchingLoops));
+              System.out.println("Delta of Path "+ i+" " +graphService.deltaOfPath(forwardPaths.get(i), nonTouchingLoops));
             }
-
             System.out.println("Transfer Function: " + transferFunction);
-
-
       }
 }

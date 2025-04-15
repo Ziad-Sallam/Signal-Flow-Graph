@@ -5,9 +5,10 @@ import java.io.InputStreamReader;
 import java.util.Arrays;
 
 public class Routh {
-    private double[][] answer;
-    private String stability;
-    private int rhpPoles;
+    public double[][] answer;
+    public String stability;
+    public int rhpPoles;
+    public String roots;
     public Routh(double[][] answer, String stability, int rhpPoles) {
         this.answer = answer;
         this.stability = stability;
@@ -188,14 +189,18 @@ public class Routh {
 
             BufferedReader in = new BufferedReader(new InputStreamReader(p.getInputStream()));
             String line;
+            StringBuilder sb = new StringBuilder();
             while ((line = in.readLine()) != null) {
                 System.out.println(line + " yaaay!!");
-
+                sb.append(line);
             }
+            sb.replace(sb.length()-1, sb.length(), "");
+            sb.replace(0, 1, "");
+            this.roots = sb.toString().trim();
+            return sb.toString().trim();
+            //int exitCode = p.waitFor();
+            //System.out.println("Exit Code: " + exitCode);
 
-            int exitCode = p.waitFor();
-            System.out.println("Exit Code: " + exitCode);
-            return line;
         } catch (Exception e) {
             e.printStackTrace();
         }
@@ -205,26 +210,26 @@ public class Routh {
     // Test
     public static void main(String[] args) {
         Routh routhChecker = new Routh();
-//        double[] coefficients1 = {1, 2, 3, 4, 5};
-//        Routh result1 = routhChecker.stable(coefficients1);
-//        printResult(coefficients1, result1);
-//        double[] coefficients2 = {1, 1, 2, 24};
-//        Routh result2 = routhChecker.stable(coefficients2);
-//        printResult(coefficients2, result2);
-//        double[] coefficients3 = {1, 2, 1, 2};
-//        Routh result3 = routhChecker.stable(coefficients3);
-//        printResult(coefficients3, result3);
-//        double[] coefficients4 = {1, 2, 2, 4, 11, 10};
-//        Routh result4 = routhChecker.stable(coefficients4);
-//        printResult(coefficients4, result4);
-//        double[] coefficients5 = {3, 5, 6, 3, 2, 1};
-//        Routh result5 = routhChecker.stable(coefficients5);
-//        printResult(coefficients5, result5);
-//        double[] coefficients6 = {1, 2, 4, 8};
-//        Routh result6 = routhChecker.stable(coefficients6);
-//        printResult(coefficients6, result6);
-
-        System.out.println(routhChecker.getRoots(new double[]{1,0,0,4}));
+        double[] coefficients1 = {1, 2, 3, 4, 5};
+        Routh result1 = routhChecker.stable(coefficients1);
+        printResult(coefficients1, result1);
+        double[] coefficients2 = {1, 1, 2, 24};
+        Routh result2 = routhChecker.stable(coefficients2);
+        printResult(coefficients2, result2);
+        double[] coefficients3 = {1, 2, 1, 2};
+        Routh result3 = routhChecker.stable(coefficients3);
+        printResult(coefficients3, result3);
+        double[] coefficients4 = {1, 2, 2, 4, 11, 10};
+        Routh result4 = routhChecker.stable(coefficients4);
+        printResult(coefficients4, result4);
+        double[] coefficients5 = {3, 5, 6, 3, 2, 1};
+        Routh result5 = routhChecker.stable(coefficients5);
+        printResult(coefficients5, result5);
+        double[] coefficients6 = {1, 2, 4, 8};
+        Routh result6 = routhChecker.stable(coefficients6);
+        printResult(coefficients6, result6);
+//
+//        System.out.println(routhChecker.getRoots(new double[]{1,0,0,4}));
     }
     private static void printResult(double[] coefficients, Routh result) {
         System.out.println("\nPolynomial Coefficients: " + Arrays.toString(coefficients));
