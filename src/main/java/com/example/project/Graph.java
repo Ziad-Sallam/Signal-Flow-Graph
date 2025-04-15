@@ -99,7 +99,7 @@ public class Graph {
         pathsgains.clear();
         for (List<Integer> loop : paths) {
             int gain = 1;
-            for (int i = 0; i < loop.size() - 2; i++) {
+            for (int i = 0; i < loop.size() - 1; i++) {
                 gain *= graph[loop.get(i)][loop.get(i + 1)];
             }
             pathsgains.add(gain);
