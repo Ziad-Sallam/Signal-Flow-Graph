@@ -5,6 +5,7 @@ import SimulationControls from "./components/controls/SimulationControls";
 import { initialNodes } from "./components/simulation/index";
 import "./App.css";
 import CharactristicEq from "./components/phase2/CharactristicEq";
+import Output from "./components/Output/Output";
 
 function App() {
   const [nodes, setNodes] = useState(initialNodes);
@@ -73,10 +74,7 @@ const handleStart = async () => {
         onStart={handleStart}
       />
       <div className="result">
-        {result && (<div> 
-          <h3>Result:</h3> 
-          <p>{JSON.stringify(result)}</p>
-        </div>)}
+        {result && (<Output result={result} setResult={setResult} />)}
       </div>
     <CharactristicEq/>
     </div>

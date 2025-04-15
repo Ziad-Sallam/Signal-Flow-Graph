@@ -1,0 +1,54 @@
+.output-container {
+  border: 5px solid #000;
+  border-radius: 30px;
+  background-color: bisque;
+  min-width: 500px;
+  min-height: 300px;
+  position: fixed;
+  left: 50%;
+    top: 50%;
+    transform: translate(-50%, -50%);
+    padding-left: 10px;
+    padding-bottom: 50px;
+}
+h2{
+    text-align: center;
+    font-size: 2rem;
+    margin-top: 20px;
+    color: #000;
+}
+
+.transformationFunc{
+    text-align: center ;
+    font-size: 1.5rem;
+    color: #28a745;
+    animation: bounce 0.5s ease-in-out infinite alternate;
+    
+}
+
+.closeButton {
+    position: absolute;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 200px;
+    background-color: #f44336; /* Red */
+    color: white;
+    border: none;
+    border-radius: 5px;
+    padding: 10px 20px;
+    cursor: pointer;
+    font-size: 1rem;
+}
+.closeButton:hover {
+    background-color: #d32f2f; /* Darker red */
+}
+
+@keyframes bounce {
+    from {
+        transform: translateY(0);
+    }
+    to {
+        transform: translateY(-3px);
+    }
+}
