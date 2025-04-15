@@ -1,9 +1,11 @@
 
 import axios from "axios";
 import { useState } from "react";
-
+import "./CharactristicEq.css";
+import RouthTableResult from "./result.js";
 export default function CharactristicEq() {
 const [coeff, setCoeff] = useState([]);
+const [result, setResult] = useState(null);
 
 const handleSubmit = (coeff) => {
 
@@ -14,14 +16,16 @@ const handleSubmit = (coeff) => {
     )
     .then((response) => {
         console.log("Response from backend:", response.data);
-        // Handle the response as needed
+        setResult(response.data); 
     })
     .catch((error) => {
         console.error("Error sending coefficients:", error);
     });
 }
 return(
-    <div>
+  <div className="charactristicEqContainer">
+    <div className="charactristicEq">
+          <h2>Characteristic Equation</h2>
         {coeff.map((value, index) => (
             <>
             <input
@@ -38,12 +42,24 @@ return(
             </>
             
           ))}
+          <div className="buttonContainer">
           <button onClick={() => setCoeff([...coeff, 0])}>Add Coefficient</button>
           <button onClick={() => setCoeff(coeff.slice(0, coeff.length - 1))}>
             Remove Coefficient
           </button>
 
           <button onClick={() => {handleSubmit(coeff)}}>Submit</button>
+          </div>
+          {result && (
+            <div className="result">
+              <RouthTableResult data={result} />
+            </div>
+          )}
+          
+    </div>
+    <button onClick={() => setResult(null)} className="clearButton">
+      Clear Result
+      </button>
     </div>
 );
 }

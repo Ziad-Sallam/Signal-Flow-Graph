@@ -11,6 +11,7 @@ function App() {
   const [nodes, setNodes] = useState(initialNodes);
   const [edges, setEdges] = useState([]);
   const [result, setResult] = useState(null);
+  const [charactristicEq, setCharactristicEq] = useState(false);
 
 
   function createAdjacencyMatrix(nodes, edges) {
@@ -76,7 +77,14 @@ const handleStart = async () => {
       <div className="result">
         {result && (<Output result={result} setResult={setResult} />)}
       </div>
-    <CharactristicEq/>
+    {charactristicEq && (
+        <div >
+          <CharactristicEq />
+        </div>
+      )}
+      <button className="charactristicEqButton" onClick={() => setCharactristicEq(!charactristicEq)}>
+        {charactristicEq ? "Hide Characteristic Equation" : "Show Characteristic Equation"}
+      </button>
     </div>
   );
 }
