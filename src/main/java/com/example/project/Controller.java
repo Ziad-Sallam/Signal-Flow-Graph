@@ -21,7 +21,8 @@ public class Controller {
 
     @PostMapping("/signal-flow-graph")
     public DataToSend signalFlowGraph(@RequestBody DataToReceive dataToReceive) {
-        Graph graph = new Graph(dataToReceive.adjacencyMatrix, dataToReceive.start, dataToReceive.end);
+        int n = dataToReceive.adjacencyMatrix.length-1;
+        Graph graph = new Graph(dataToReceive.adjacencyMatrix, 0,n);
         GraphService graphService = new GraphService(graph);
         DataToSend dataToSend = new DataToSend();
         dataToSend.forwardPaths = graphService.forwardPaths();
@@ -37,10 +38,5 @@ public class Controller {
         }
         return dataToSend;
     }
-
-
-
-
-
 }
 

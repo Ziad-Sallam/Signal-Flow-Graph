@@ -210,26 +210,26 @@ public class Routh {
     // Test
     public static void main(String[] args) {
         Routh routhChecker = new Routh();
-        double[] coefficients1 = {1, 2, 3, 4, 5};
-        Routh result1 = routhChecker.stable(coefficients1);
-        printResult(coefficients1, result1);
-        double[] coefficients2 = {1, 1, 2, 24};
-        Routh result2 = routhChecker.stable(coefficients2);
-        printResult(coefficients2, result2);
-        double[] coefficients3 = {1, 2, 1, 2};
-        Routh result3 = routhChecker.stable(coefficients3);
-        printResult(coefficients3, result3);
-        double[] coefficients4 = {1, 2, 2, 4, 11, 10};
-        Routh result4 = routhChecker.stable(coefficients4);
-        printResult(coefficients4, result4);
-        double[] coefficients5 = {3, 5, 6, 3, 2, 1};
-        Routh result5 = routhChecker.stable(coefficients5);
-        printResult(coefficients5, result5);
-        double[] coefficients6 = {1, 2, 4, 8};
-        Routh result6 = routhChecker.stable(coefficients6);
-        printResult(coefficients6, result6);
+//        double[] coefficients1 = {1, 2, 3, 4, 5};
+//        Routh result1 = routhChecker.stable(coefficients1);
+//        printResult(coefficients1, result1);
+//        double[] coefficients2 = {1, 1, 2, 24};
+//        Routh result2 = routhChecker.stable(coefficients2);
+//        printResult(coefficients2, result2);
+//        double[] coefficients3 = {1, 2, 1, 2};
+//        Routh result3 = routhChecker.stable(coefficients3);
+//        printResult(coefficients3, result3);
+//        double[] coefficients4 = {1, 2, 2, 4, 11, 10};
+//        Routh result4 = routhChecker.stable(coefficients4);
+//        printResult(coefficients4, result4);
+//        double[] coefficients5 = {3, 5, 6, 3, 2, 1};
+//        Routh result5 = routhChecker.stable(coefficients5);
+//        printResult(coefficients5, result5);
+//        double[] coefficients6 = {1, 2, 4, 8};
+//        Routh result6 = routhChecker.stable(coefficients6);
+//        printResult(coefficients6, result6);
 //
-//        System.out.println(routhChecker.getRoots(new double[]{1,0,0,4}));
+        System.out.println(routhChecker.getRoots(new double[]{10,15,20}));
     }
     private static void printResult(double[] coefficients, Routh result) {
         System.out.println("\nPolynomial Coefficients: " + Arrays.toString(coefficients));
