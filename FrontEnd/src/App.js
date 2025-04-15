@@ -45,10 +45,10 @@ const handleStart = async () => {
     console.log(edges);
     
     const matrix = createAdjacencyMatrix(nodes, edges);
-    console.log('Adjacency Matrix:', matrix);
+    console.log({adjacencyMatrix: matrix});
 
-    axios.post('EndPoint', {
-      matrix: matrix, 
+    axios.post('http://localhost:8080/signal-flow-graph', {
+      adjacencyMatrix: matrix, 
     })
     .then((response) => {
       console.log('Response from backend:', response.data);
@@ -78,7 +78,7 @@ const handleStart = async () => {
           <p>{JSON.stringify(result)}</p>
         </div>)}
       </div>
-    {/* <CharactristicEq/> */}
+    <CharactristicEq/>
     </div>
   );
 }

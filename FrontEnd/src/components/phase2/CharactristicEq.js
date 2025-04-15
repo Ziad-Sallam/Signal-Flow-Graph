@@ -1,11 +1,24 @@
 
+import axios from "axios";
 import { useState } from "react";
 
 export default function CharactristicEq() {
 const [coeff, setCoeff] = useState([]);
 
 const handleSubmit = (coeff) => {
+
+  
     console.log(coeff);
+    axios.post("http://localhost:8080/routh", 
+        coeff,
+    )
+    .then((response) => {
+        console.log("Response from backend:", response.data);
+        // Handle the response as needed
+    })
+    .catch((error) => {
+        console.error("Error sending coefficients:", error);
+    });
 }
 return(
     <div>
