@@ -165,7 +165,7 @@ public class Routh {
         int n = coeffients.length;
         StringBuilder exp = new StringBuilder();
 
-        exp.append(coeffients[n-1]).append("*x^").append(n-1);
+        exp.append(coeffients[0]).append("*x^").append(n-1);
         for (int i = 1; i < n; i++) {
             if (coeffients[i] >= 0) exp.append(" + ");
             else{
