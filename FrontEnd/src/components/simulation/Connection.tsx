@@ -85,7 +85,7 @@ x: centerX,
 y: centerY , 
 };
 }else if (isBiDirectionEdge) {
-  const offset = sourceX < targetX ? 25 : -25;
+  const offset = sourceX < targetX ? 40 : -40;
   path = getSpecialPath({ sourceX, sourceY, targetX, targetY }, offset);
   pointOnPath = getPointOnQuadraticCurve(sourceX, sourceY, targetX, targetY, offset);
 }else {
@@ -132,7 +132,7 @@ y: centerY ,
   
     const y = Math.pow(1 - t, 2) * sourceY +
               2 * (1 - t) * t * cy +
-              Math.pow(t, 2) * targetY;
+              Math.pow(t, 2) * targetY ;
   
     return { x, y };
   }
