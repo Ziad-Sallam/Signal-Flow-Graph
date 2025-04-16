@@ -149,7 +149,7 @@ export default function CustomEdge({
     >
       <input
       type="number"
-      value={data?.weight || 1 }
+      value={data?.weight || '' }
       onChange={handleWeightChange}
       placeholder="W"
       style={{

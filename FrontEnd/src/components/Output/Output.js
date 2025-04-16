@@ -73,9 +73,11 @@ export default function Output ({ result , setResult}) {
           content: nonTouchingLoops.length > 0 ? (
             <ul className="list-disc list-inside">
               {nonTouchingLoops.map((group, idx) => (
-                <li key={idx}>
-                  Group {idx + 1}: {group.map(loop => loop.join(" → ")).join(" || ")}
-                </li>
+                  <li key={idx}>
+                      {console.log("hiii")}
+                      {console.log(group)}
+                      Group {idx + 1}: {group.join(" > ")}
+                  </li>
               ))}
             </ul>
           ) : (
