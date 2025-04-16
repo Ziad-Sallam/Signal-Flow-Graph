@@ -51,6 +51,10 @@ export default function CustomEdge({
     return edgeExists;
   });
 
+  const isSelfConnection = String(source) === String(target);
+
+  
+
   const {setEdges} = useReactFlow(); 
  
   const edgePathParams = {
@@ -65,15 +69,31 @@ export default function CustomEdge({
   let path = '';
   let pointOnPath ;
  
-  if (isBiDirectionEdge) {
-    const offset = sourceX < targetX ? 25 : -25;
-    path = getSpecialPath({ sourceX, sourceY, targetX, targetY }, offset);
-    pointOnPath = getPointOnQuadraticCurve(sourceX, sourceY, targetX, targetY, offset);
-  } else {
+  
+  if (isSelfConnection) {
+  // Improved self-connection handling
+  
+  const radius = 40;
+  const centerX = sourceX;
+  const centerY = sourceY - radius;
+  
+  // Create a self-loop that starts and ends at the same node
+  path = `M ${sourceX} ${sourceY} C ${sourceX + radius} ${sourceY - radius/2}, ${sourceX + radius} ${sourceY - radius*1.5}, ${centerX} ${centerY} C ${sourceX - radius} ${sourceY - radius*1.5}, ${sourceX - radius} ${sourceY - radius/2}, ${sourceX} ${sourceY}`;
+
+// Position the weight input at the top of the circle
+pointOnPath = {
+x: centerX,
+y: centerY , 
+};
+}else if (isBiDirectionEdge) {
+  const offset = sourceX < targetX ? 25 : -25;
+  path = getSpecialPath({ sourceX, sourceY, targetX, targetY }, offset);
+  pointOnPath = getPointOnQuadraticCurve(sourceX, sourceY, targetX, targetY, offset);
+}else {
     [path] = getBezierPath(edgePathParams);
     pointOnPath = getPointOnBezierCurve(sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition);
   }
-
+  
   function getPointOnBezierCurve(sourceX, sourceY, targetX, targetY, sourcePosition, targetPosition, t = 0.5) {
     const [edgePath] = getBezierPath({
       sourceX,
