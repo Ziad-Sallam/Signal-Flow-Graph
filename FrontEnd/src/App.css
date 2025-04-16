@@ -57,7 +57,52 @@
   width: 300px;
   height: 50px;
   gap: 1rem;
-  border: 5px solid #000;
+  border: 5px solid #00879E;
+  color: #00879E;
+  font-size: 15px;
+  font-weight: 700;
   border-radius: 30px;
-  background-color: rgb(255, 191, 1);
+  background-color: #FFAB5B;
+  transition: background-color 0.3s ease;
+}
+
+.charactristicEqButton:hover {
+  background-color: #f8cca3;
+  transition: background-color 0.3s ease;
+}
+
+.slide-container {
+  overflow: hidden;
+  animation-duration: 0.4s;
+  animation-fill-mode: both;
+}
+
+.slide-in {
+  animation-name: slideIn;
+}
+
+.slide-out {
+  animation-name: slideOut;
+}
+
+@keyframes slideIn {
+  from {
+    max-height: 0;
+    opacity: 0;
+  }
+  to {
+    max-height: 500px; /* adjust to expected height */
+    opacity: 1;
+  }
+}
+
+@keyframes slideOut {
+  from {
+    max-height: 500px;
+    opacity: 1;
+  }
+  to {
+    max-height: 0;
+    opacity: 0;
+  }
 }

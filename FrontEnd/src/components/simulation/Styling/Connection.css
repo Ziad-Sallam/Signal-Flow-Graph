@@ -1,6 +1,6 @@
 /* Default edge style */
 .edge-path {
-    stroke: #007bff;
+    stroke: #FFAB5B;
     stroke-width: 2px;
     transition: stroke 0.2s ease;
   }

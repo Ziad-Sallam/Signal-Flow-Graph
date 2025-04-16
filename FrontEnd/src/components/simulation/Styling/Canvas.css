@@ -3,46 +3,38 @@
   }
 
   .react-flow__background{
-    background-color: rgb(212, 235, 248,0.5);
+    background-color: #FFF2DB;
   }
 
   .buttons{
     position: fixed;
-    top: 10px;
-    width: 100%;
+    bottom: 10px;
+    left: 50%;
+    transform: translateX(-50%);
   }
 
   .queueButton{
-    width: 45%;
-    height: 45px;
-    background-color: #1F509A;
+    margin-right: 5px;
+    width: 200px;
+    height: 50px;
+    background-color: #003092;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    color: #E38E49;
+    color: #FFAB5B;
     font-size: 16px;
     font-weight: 700;
   }
 
-  .machineButton{
-    width: 45%;
-    margin-left: 10%;
-    height: 45px;
-    background-color: #1F509A;
-    border: none;
-    outline: none;
-    border-radius: 40px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
-    cursor: pointer;
-    color: #E38E49;
-    font-size: 16px;
-    font-weight: 700;
-  }
+  
 
   .machineButton:hover,
-  .queueButton:hover{
+  .queueButton:hover,
+  .deleteButton:hover,
+  .saveButton:hover,
+  .loadButton:hover{
     background-color: #b0ddf8;
     transition: 0.3s;
   }
@@ -68,13 +60,13 @@
     width: 45%;
     height: 25px;
     margin-bottom: 10px;
-    background-color: #1F509A;
+    background-color:#003092;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    color: #E38E49;
+    color: #FFAB5B;
     font-size: 16px;
     font-weight: 700;
   }
@@ -86,7 +78,7 @@
 
   .save-load{
     position: fixed;
-    background-color:rgb(31, 80, 154,0.5);
+    background-color:#00869ead;
     backdrop-filter: blur(20px);
     left: 10px;
     top: 500px;
@@ -102,13 +94,13 @@
     margin-left: 10px;
     margin-top: 5px;
     margin-bottom: 10px;
-    background-color: #1F509A;
+    background-color: #003092;
     border: none;
     outline: none;
     border-radius: 40px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    color: #E38E49;
+    color: #FFAB5B;
     font-size: 16px;
     font-weight: 700;
   }
@@ -119,13 +111,13 @@
     margin-left: 10px;
     margin-top: 0px;
     margin-bottom: 10px;
-    background-color: #1F509A;
+    background-color: #003092;
     border: none;
     outline: none;
     border-radius: 10px;
     box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
     cursor: pointer;
-    color: #E38E49;
+    color: #FFAB5B;
     font-size: 16px;
     font-weight: 700;
   }

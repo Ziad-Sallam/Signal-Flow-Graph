@@ -1,0 +1,22 @@
+.queueNode{
+    border: 2px solid  black;
+    border-radius: 50px;
+    width: 40px;
+    height: 40px;
+
+    background-color: #00879E;
+    backdrop-filter: blur(30px);
+    color: #fff;
+}
+
+.text{
+    font-size: 1.2rem;
+    color: #FFAB5B;
+    text-align: center;
+    margin-top: 7px;
+    font-weight: 700;
+}
+
+.queueNode input{
+    border-radius: 20px;
+}

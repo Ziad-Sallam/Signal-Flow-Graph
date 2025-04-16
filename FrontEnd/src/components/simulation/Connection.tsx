@@ -3,7 +3,6 @@ import "./Styling/Connection.css";
 import {
   getBezierPath,
   useStore,
-  BaseEdge,
   type EdgeProps,
   type ReactFlowState,
   useReactFlow,

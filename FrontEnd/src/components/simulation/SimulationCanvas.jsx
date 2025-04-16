@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect } from "react";
+import React, { useCallback } from "react";
 import {
   addEdge,
   MiniMap,
@@ -17,7 +17,7 @@ import "./Styling/Canvas.css";
 
 
 
-function SimulationCanvas({ nodes, setNodes, edges, setEdges}) {
+function SimulationCanvas({ nodes, setNodes, edges, setEdges , onCalculate }) { 
 
   const onNodesChange = useCallback(
     (changes) => setNodes((nds) => applyNodeChanges(changes, nds)),
@@ -113,7 +113,8 @@ function SimulationCanvas({ nodes, setNodes, edges, setEdges}) {
         </ul>
       </div>
       <div className="buttons">
-        <button className="queueButton" onClick={addNode}>Add Queue</button>
+        <button className="queueButton" onClick={addNode}>Add Node</button>
+        <button className="queueButton" onClick={onCalculate}>Calculate</button>
       </div>
       <div className="save-load">
         <button className="saveButton" onClick={saveToFile}>

@@ -1,5 +1,5 @@
 import { Handle, Position } from '@xyflow/react';
-import "./Styling/Queue.css";
+import "./Styling/Node.css";
 
  
 function Node({data}) {
@@ -18,8 +18,8 @@ function Node({data}) {
         id="top2"
        
       />
-      <div>
-        {data.label && <p>{data.label}</p>}
+      <div className='text'>
+        {data.label }
       </div>
       <Handle
         type="target"
