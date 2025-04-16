@@ -1,0 +1,14 @@
+/* Default edge style */
+.edge-path {
+    stroke: #007bff;
+    stroke-width: 2px;
+    transition: stroke 0.2s ease;
+  }
+  
+  /* When selected */
+  .react-flow__edge-selected .edge-path {
+    stroke: #ff4081;
+    stroke-width: 3px;
+    filter: drop-shadow(0 0 2px #ff4081);
+  }
+  

@@ -1,6 +1,6 @@
 
 import Node from "./Node";
-import CustomEdge from "./Connection.jsx";
+import CustomEdge from "./Connection.tsx";
 
 
 export const initialNodes = [
