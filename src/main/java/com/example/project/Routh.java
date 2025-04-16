@@ -2,6 +2,7 @@ package com.example.project;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
+import java.util.ArrayList;
 import java.util.Arrays;
 
 public class Routh {
@@ -66,7 +67,8 @@ public class Routh {
         return true;
     }
     private boolean checkzerorow(double[][] routh, int row) {
-        for (int i = 0; i < routh[0].length; i++) {
+        if(routh[0].length- (row/2) < 2) return false;
+        for (int i = 0; i < routh[0].length - (row/2); i++) {
             if (Math.abs(routh[row][i]) > 1e-10) {
                 return false;
             }
@@ -124,12 +126,11 @@ public class Routh {
                 }
                 routh[i][l]=((a*d)-(b*c))/a;
             }
-            if (Math.abs(routh[i][0]) <= 1e-10 && checkzerorow(routh, i)) {
-                if (!derivative(routh, i)) {
-                    return routh; // System is critically unstable
-                }
+            if(checkzerorow(routh, i)){
+                derivative(routh, i);
+                    // System is critically unstable
             }
-            if (Math.abs(routh[i][0]) < 1e-10) {
+            else if (Math.abs(routh[i][0]) <= 1e-10 ) {
                 routh[i][0] = 1e-5;
             }
         }
@@ -196,6 +197,13 @@ public class Routh {
             }
             sb.replace(sb.length()-1, sb.length(), "");
             sb.replace(0, 1, "");
+            String[] s = sb.toString().split(", ");
+            this.rhpPoles = 0;
+            for(String str : s) {
+                if(!(str.charAt(0) == '-'  || (str.charAt(str.length()-1) == 'I' && !str.contains(" ")))) rhpPoles++;
+                System.out.println(str+"end");
+            }
+
             this.roots = sb.toString().trim();
             return sb.toString().trim();
             //int exitCode = p.waitFor();
