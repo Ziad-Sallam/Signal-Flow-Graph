@@ -8,27 +8,31 @@ function Node({data}) {
     <div className="queueNode">
       <Handle
         type="target"
-        position={Position.Center}
+        position={Position.Top}
+        id="top1"
        
       />
       <Handle
         type="source"
-        position={Position.Center}
+        position={Position.Top}
+        id="top2"
        
       />
       <div>
         {data.label && <p>{data.label}</p>}
       </div>
-      {/* <Handle
+      <Handle
         type="target"
-        position={Position.Left}
+        position={Position.Bottom}
+        id="bottom1"
         
       />
       <Handle
         type="source"
-        position={Position.Left}
+        position={Position.Bottom}
+        id="bottom2"
         
-      /> */}
+      />
     </div>
   );
 }
